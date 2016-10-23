@@ -49,6 +49,7 @@ public class Renderer {
 
     private void generatePlanets() {
         SpaceData data = new SpaceData();
+        Planet current;
 
         // Sun
         data.name = "Sun";
@@ -58,13 +59,13 @@ public class Renderer {
         sun = new Star(data);
 
         int planetNo = 1;
-        double transVal = 10;
+        double transVal = 25;
 
         // Mercury
         data.name = "Mercury";
         data.colour = "ORANGE";
         data.position.set(10, 0);
-        data.diameter = 2.06;
+        data.diameter = 6.5;
         data.speed = 10.09;
         planets.add(new Planet(data, sun));
 
@@ -72,37 +73,52 @@ public class Renderer {
         data.name = "Venus";
         data.colour = "GREEN";
         data.position.set(13.59 + (transVal * planetNo++), 0);
-        data.diameter = 5.11;
+        data.diameter = 10;
         data.speed = 7.45;
         planets.add(new Planet(data, sun));
 
         // Earth
-        Planet earth;
 
         data.name = "Earth";
         data.colour = "BLUE";
         data.position.set(18.83 + (transVal * planetNo++), 0);
-        data.diameter = 5.38;
+        data.diameter = 10;
         data.speed = 6.34;
-        planets.add(earth = new Planet(data, sun));
+        planets.add(current = new Planet(data, sun));
 
-        // Earth's Moon
+        // The Moon
         data.name = "Moon";
         data.colour = "WHITE";
         data.position.set(2, 0);
-        data.diameter = 1;
+        data.diameter = 3;
         data.speed = 13.06;
-        moons.add(new Moon(data, earth));
+        moons.add(new Moon(data, current));
 
         // Mars
         data.name = "Mars";
         data.colour = "RED";
         data.position.set(22.96 + (transVal * planetNo++), 0);
-        data.diameter = 2.87;
+        data.diameter = 7;
         data.speed = 5.13;
-        planets.add(new Planet(data, sun));
+        planets.add(current = new Planet(data, sun));
 
-        // Jupiter
+        // Phobos
+        data.name = "Phobos";
+        data.colour = "RED";
+        data.position.set(10, 0);
+        data.diameter = 3;
+        data.speed = 12;
+        moons.add(new Moon(data, current));
+
+        // Deimos
+        data.name = "Deimos";
+        data.colour = "WHITE";
+        data.position.set(4, 0);
+        data.diameter = 3;
+        data.speed = 8;
+        moons.add(new Moon(data, current));
+
+      /*  // Jupiter
         Planet jupiter;
 
         data.name = "Jupiter";
@@ -168,7 +184,7 @@ public class Renderer {
         data.position.set(178.55 + (transVal * planetNo), 0);
         data.diameter = 1;
         data.speed = 1;
-        planets.add(new Planet(data, sun));
+        planets.add(new Planet(data, sun));*/
     }
 
     public boolean isExiting() { return exiting; }

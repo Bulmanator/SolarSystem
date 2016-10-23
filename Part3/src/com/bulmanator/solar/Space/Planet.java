@@ -5,16 +5,21 @@ import com.bulmanator.solar.Util.SpaceData;
 
 public class Planet extends SpaceBody {
 
-    private Star orbit;
+    /** The Space Body which this Planet orbits around. */
+    private SpaceBody orbit;
+    /** The Speed at which this Planet orbits. */
     private double speed;
 
-    public Planet(SpaceData data, Star orbit) {
+    public Planet(SpaceData data, SpaceBody orbit) {
         super(data);
         this.orbit = orbit;
         position.set(position.getR() + orbit.getDiameter() / 2, position.getTheta());
 
         speed = data.speed;
     }
+
+    @Override
+    public void move() { position.rotate(speed); }
 
     @Override
     public void render(SolarSystem s) {
@@ -24,6 +29,4 @@ public class Planet extends SpaceBody {
 
     @Override
     public Type getType() { return Type.PLANET; }
-
-    public Star getOrbit() { return orbit; }
 }
